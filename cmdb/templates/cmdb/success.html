@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录成功</title>
+    <script>
+        function addUser() {
+            //js跳转
+            window.location.href = "/addUI/"
+        }
+
+    </script>
+</head>
+
+<body>
+    {% for x in info %}
+    {{ x }}
+    {% endfor %} 登录成功
+    <button onclick="addUser()">增加用户</button>
+
+</body>
+
+</html>

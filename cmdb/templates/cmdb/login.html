@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <title>登录页面</title>
     <!--引入css文件 -->
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="{% static 'cmdb/bootstrap.css' %}">
 
 </head>
 
@@ -18,13 +18,14 @@
 
         </font>
         <form class="form-inline" action="/login/" method="post">
+            {% csrf_token %}
             <div class="form-group">
                 <label for="exampleInputName2">账号</label>
                 <input type="text" name="username" class="form-control" id="exampleInputName2" placeholder="请输入账号">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">密码</label>
-                <input type="email" name="password" class="form-control" placeholder="请输入密码">
+                <input type="text" name="password" class="form-control" placeholder="请输入密码">
             </div>
             <button type="submit" class="btn btn-default">登录</button>
         </form>
