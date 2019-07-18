@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 
 <head>
@@ -16,17 +17,30 @@
             alert(obj);
         }
     </script>
+    <link rel="stylesheet" href="{% static 'cmdb/bootstrap.css' %}">
+    <style type="text/css">
+        img{  
+            width: auto;  
+            height: auto;  
+            max-width: 100%;  
+            max-height: 100%;     
+        }
+        .test{
+            text-align: center;
+            font-family: serif;
+            line-height: 5;
+        }     
+    </style>
 </head>
 
 <body>
-    <center>
-        <table border="1px" style="background-color: aqua ;border-collapse: collapse;text-align: center;
-             height: 162px;width: 300px ">
+    <div class="container">
+        <table class="table table-striped" style="font-size: 17px" >
             <thead>
-                <th>评分</th>
-                <th>主题</th>
-                <th>URL</th>
-                <th>封面</th>
+                <th class="text-center">评分</th>
+                <th class="text-center">主题</th>
+                <th class="text-center">URL</th>
+                <th class="text-center">封面</th>
             </thead>
             <tbody>
         
@@ -36,18 +50,19 @@
         
                 {% for x in data %}
                 <tr>
-                    <td>{{ x.rate }}</td>
-                    <td>{{ x.title }}</td>
-                    <td>{{ x.url }}</td>
-                    <td>
-                        <img src="{{x.cover}}">
+                    <td ><p class="test" style="width:100x;height:80px">{{ x.rate }}</p></td>
+                    <td ><p class="test" style="width:100x;height:80px">{{ x.title }}</p></td>
+                    <td ><p class="test" style="width:100x;height:80px">{{ x.url }}</p></td>
+                    <td >
+                        <div style="width:100x;height:80px" class="test">
+                            <img src="{{x.cover}}">
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        
-    </center>
+    </div>
 </body>
 
 </html>
