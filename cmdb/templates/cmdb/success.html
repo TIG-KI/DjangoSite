@@ -3,22 +3,51 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer" /> <!--可以让img标签预加载网络图片-->
     <title>登录成功</title>
     <script>
         function addUser() {
             //js跳转
             window.location.href = "/addUI/"
         }
-
+    </script>
+    <script>
+        test = function (obj) {
+            alert(obj);
+        }
     </script>
 </head>
 
 <body>
-    {% for x in info %}
-    {{ x }}
-    {% endfor %} 登录成功
-    <button onclick="addUser()">增加用户</button>
-
+    <center>
+        <table border="1px" style="background-color: aqua ;border-collapse: collapse;text-align: center;
+             height: 162px;width: 300px ">
+            <thead>
+                <th>评分</th>
+                <th>主题</th>
+                <th>URL</th>
+                <th>封面</th>
+            </thead>
+            <tbody>
+        
+                {% for x in info2 %}
+                {{ x }}
+                {% endfor %}
+        
+                {% for x in data %}
+                <tr>
+                    <td>{{ x.rate }}</td>
+                    <td>{{ x.title }}</td>
+                    <td>{{ x.url }}</td>
+                    <td>
+                        <img src="{{x.cover}}">
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+    </center>
 </body>
 
 </html>

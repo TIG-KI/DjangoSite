@@ -6,6 +6,12 @@
     <title>登录页面</title>
     <!--引入css文件 -->
     <link rel="stylesheet" href="{% static 'cmdb/bootstrap.css' %}">
+    <script>
+        function addUser() {
+            //js跳转
+            window.location.href = "/register/"
+        }
+    </script>
 
 </head>
 
@@ -28,6 +34,8 @@
                 <input type="text" name="password" class="form-control" placeholder="请输入密码">
             </div>
             <button type="submit" class="btn btn-default">登录</button>
+            <!-- <button type="button" class="btn btn-default" formaction="/register/" formmethod="GET">注册</button> -->
+            <button type="button" class="btn btn-default" onclick="addUser()">注册</button>
         </form>
     </center>
 </body>
