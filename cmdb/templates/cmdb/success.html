@@ -4,12 +4,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="referrer" content="no-referrer" /> <!--可以让img标签预加载网络图片-->
+    <!--可以让img标签预加载网络图片-->
+    <meta name="referrer" content="no-referrer" />
     <title>登录成功</title>
     <script>
-        function addUser() {
+        function displayUser() {
             //js跳转
-            window.location.href = "/addUI/"
+            window.location.href = "/disPUI/"
         }
     </script>
     <script>
@@ -35,6 +36,20 @@
 
 <body>
     <div class="container">
+        <table style="width:100% ;background-color: darkgray">
+                <th  style="width: 50%;padding: 8px"><button class="btn btn-primary" onclick="displayUser()">back</button></th>
+                <th  style="width: 50%">
+                    <form class="form-inline" action="/findMovie/" method="post" align="right">
+                        {% csrf_token %}
+                        <div class="form-group"  style="padding: 8px">
+                            <input type="text" name="movieName" class="form-control" placeholder="Movie name" style="width: 150px">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </th>
+        </table>
+    </div>
+    <div class="container">
         <table class="table table-striped" style="font-size: 17px" >
             <thead>
                 <th class="text-center">评分</th>
@@ -43,20 +58,17 @@
                 <th class="text-center">封面</th>
             </thead>
             <tbody>
-        
-                {% for x in info2 %}
-                {{ x }}
-                {% endfor %}
-        
                 {% for x in data %}
                 <tr>
                     <td ><p class="test" style="width:100x;height:80px">{{ x.rate }}</p></td>
                     <td ><p class="test" style="width:100x;height:80px">{{ x.title }}</p></td>
-                    <td ><p class="test" style="width:100x;height:80px">{{ x.url }}</p></td>
+                    <td ><a href="{{ x.url }}"><p class="test" style="width:100x;height:80px">{{ x.url }}</p></a></td>
                     <td >
-                        <div style="width:100x;height:80px" class="test">
-                            <img src="{{x.cover}}">
-                        </div>
+                        <a href="{{x.cover}}">
+                            <div style="width:100x;height:80px" class="test">
+                                <img src="{{x.cover}}">
+                            </div>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
