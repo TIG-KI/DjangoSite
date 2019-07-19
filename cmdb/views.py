@@ -23,7 +23,7 @@ def index(request):
 
 #登录验证
 def login(request):
-    jfun()
+    #jfun()
     #return HttpResponse("hello")
     movie_list = []
     #防止直接输入URL就能进入登录成功后的界面
@@ -47,7 +47,7 @@ def login(request):
             for x in cursor.fetchall():
                 print(x[2])
                 if x[2] == password:
-                    sql = "select * from json"
+                    sql = "SELECT * FROM json ORDER BY rate DESC"
 
                     # 向服务器发送sql语句
                     cursor.execute(sql)
@@ -140,3 +140,45 @@ def jfun():
             con.commit()
     cursor.close()
     con.close()
+
+def  UserList(request):
+
+    User_List = []
+
+    cursor = con.cursor()
+
+    sql = "select * from user"
+
+    # 向服务器发送sql语句
+    cursor.execute(sql)
+    for x in cursor.fetchall():
+        dict = {}
+        dict["username"] = x[1]
+        dict["Key"] = x[2]
+        User_List.append(dict)
+
+    return render(request,"cmdb/User_Display.html",{"data":User_List})
+
+def findMovie(request):
+    
+    find_Movie_list = []
+    cursor = con.cursor()
+
+    if request.method == "POST":
+        movieName = request.POST.get("movieName",None)
+        sql = "SELECT * FROM json WHERE title = ('%s')"
+        print(sql % movieName)
+        cursor.execute(sql % movieName)
+        for x in cursor.fetchall():
+            print(x)
+            dict = {}
+            dict["rate"] = x[0]
+            dict["title"] = x[1]
+            dict["url"] = x[2]
+            dict["cover"] = x[3]
+            find_Movie_list.append(dict)
+        print(find_Movie_list)
+        return render(request, "cmdb/success.html", {"data": find_Movie_list})
+
+
+
